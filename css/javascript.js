@@ -240,11 +240,14 @@
 
         .then(function(products){
             let placeholder = document.querySelector('.showproduct-center');
+            console.log("placeholder : ", placeholder)
+            console.log("products : ", products)
+
             let out = "";
             for(let product of products){
+                // <a href="./pages/DetailProduct/text-DetailProduct/DetailProducts.html">
                 out += `
-                    <div class="showproduct-center_item">
-                        <a href="./pages/DetailProduct/text-DetailProduct/DetailProducts.html">
+                        <div class="showproduct-center_item">
                             <div class="showproduct-center_item--img">
                                 <img src='${product.image}'>
                                 
@@ -261,13 +264,76 @@
                             <div class="find-products">
                                     ${product.find}
                             </div>
-                        </a>
-                    </div>
-                `;
-            }
+
+                        </div>
+                    `;
+                            // </a>    
+                        }
 
             placeholder.innerHTML = out;
-        });
+
+
+                    // let DialogContainer = document.querySelector('.dialog_showproduct-center');
+                    let Dialog = document.querySelector('.dialog_showproduct-center');
+                    console.log("Dialog : ",Dialog)
+                    let dialogContainer = document.querySelector('.showDialogProduct');
+                    let imgSingle = document.querySelector('.img-single');
+                    console.log('imgSingle : ',imgSingle)
+                    let showDialog = document.querySelectorAll('.showproduct-center_item');
+                    console.log("showDialog: ", showDialog);
+
+                    let showNameDialogProduct = document.querySelector('.title');
+
+                    console.log('showNameDialogProduct', showNameDialogProduct)
+
+                    // let showImgDialog = document.querySelectorAll('.showproduct-center_item img');
+                    // console.log("showImgDialog : ",showImgDialog)
+
+
+                        showDialog.forEach( e => {
+                            e.addEventListener("click", () => {
+                                console.log("e :", e)
+                                Dialog.style.display = 'flex';
+                                imgSingle.querySelector('img').src = e.querySelector('img').src;
+                                
+                                let a = showNameDialogProduct.querySelector('p');
+                                let b = e.querySelector('span');
+
+                                console.log("a : ",a)
+                                console.log("b : ",b)
+
+                                showNameDialogProduct = b;
+                                
+                                console.log("a1 : ",showNameDialogProduct)
+
+
+                                // showNameDialogProduct.querySelector('p') = e.querySelector('span');
+                                // console.log("p : ",showNameDialogProduct);
+                                // console.log("title : ",showNameDialogProduct.querySelector('p'));
+
+                               
+                            })
+                        })
+
+                        Dialog.addEventListener("click", () => {
+                            Dialog.style.display = 'none';
+                        });
+
+                        dialogContainer.addEventListener("click", (event) => {
+                            event.stopPropagation()
+                        });
+                        
+
+        })
+
+        // .then(function(products) {
+        //     let showDialog = document.querySelector('.showproduct-center_item');
+        //     showDialog.addEventListener("click", (e) => {
+        //         console.log("heloo")
+        //     })
+        // })
+
+        // <a href="./pages/DetailProduct/text-DetailProduct/DetailProducts.html">
 
         // END JSON
 
@@ -333,3 +399,5 @@
 
 
         // END LOAD MORE BUTTOM
+
+        

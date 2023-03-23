@@ -21,23 +21,42 @@ const modalBox = document.querySelector('.body_modal-box')
 
 allHoverImages.forEach((image) => {
     image.addEventListener('mouseover', () =>{
-        // imgContainer.querySelector('img');
-        // console.log("1",imgContainer);
+        
+        console.log('image :', image )
 
         imgContainer.querySelector('img').src = image.src;
         resetActiveImg();
         image.classList.add('active');
+
     });
 });
 
+let indexImage = 0;
+
 allHoverImages.forEach((img) => {
+    
     img.addEventListener('click', () =>{
+
     bodyModal.classList.add("open");
     imageSingle.querySelector('img').src = img.src
-    resetActiveImg();
-    modalImage.classList.add('active');
+    // console.log("imageSingle : ",imageSingle)
+
+    })
+
+    modalImage.forEach((imgs) => {
+    
+        // console.log("IMGS",imgs)
+        imgs.addEventListener('click', () => {
+           
+            imageSingle.querySelector('img').src = imgs.src;
+            resetActiveImgs();
+            imgs.classList.add('active');
+ 
+        });
     });
+
 });
+
 
 bodyModal.addEventListener("click", () => {
     bodyModal.classList.remove("open");
@@ -53,20 +72,26 @@ function resetActiveImg(){
     });
 }
 
-modalImage.forEach((img) => {
-    img.addEventListener('click', () =>{
-        console.log(img)
-       
-
-        imageSingle.querySelector('img').src = img.src;
-       
-
-        modalImage.forEach((img) => {
-            img.classList.remove('active');
-        })
-        img.classList.add('active');
+function resetActiveImgs(){
+    modalImage.forEach((img) => {
+        img.classList.remove('active');
     });
-});
+}
+
+// modalImage.forEach((img) => {
+//     img.addEventListener('click', () =>{
+//         console.log(img)
+       
+
+//         imageSingle.querySelector('img').src = img.src;
+       
+
+//         // modalImage.forEach((img) => {
+//         //     img.classList.remove('active');
+//         // })
+//         img.classList.add('active');
+//     });
+// });
 
 // HANDLE
 
